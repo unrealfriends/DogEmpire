@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class UseObject : MonoBehaviour
 {
+    //public Health health;
+    //increaseHealth = new IncreaseHealth();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,7 @@ public class UseObject : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Pickup();
+            //AddToHealth();
         }
     }
 

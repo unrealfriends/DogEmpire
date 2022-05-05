@@ -14,10 +14,16 @@ public class FoodAI : MonoBehaviour
     // foodbar aufrufen
     // da gesundheit direkt mit foodbar interagiert
     public FoodBar foodBar;
+    public HealthBar healthBar;
+
+    public Health health;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        //GameObject gameObject = new GameObject("Health");
+        //health = gameObject.AddComponent<Health>();
 
         losingFood = true;
         // bei start: momentane gesundheit ist gleich maximale 
@@ -30,11 +36,19 @@ public class FoodAI : MonoBehaviour
             StartCoroutine(UpdateFood());
 
         }
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (currentFood <= 99)
+        {
+            print("Nahrung ist knapp! Bitte Essen!");
+
+            health.UpdateHealth();
+        }
 
     }
 
@@ -52,9 +66,9 @@ public class FoodAI : MonoBehaviour
     void DecreaseFood()
     {
         // 1 punkt gesundheit abziehen
-        currentFood = currentFood - 1;
+        currentFood = currentFood - 2;
 
-        // healthbar auf aktuellen wert setzen (slider anpassen)
+        // foodbar auf aktuellen wert setzen (slider anpassen)
         foodBar.SetFood(currentFood);
     }
 }

@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
+
     //losinghealth auf false, sonst verliert von anfang an gesundheit
     public bool losingHealth = false;
 
@@ -38,7 +39,7 @@ public class Health : MonoBehaviour
         
     }
 
-    IEnumerator UpdateHealth()
+    public IEnumerator UpdateHealth()
     {
         while (true)
         {
@@ -49,12 +50,14 @@ public class Health : MonoBehaviour
         }
     }
 
-    void DecreaseHealth()
+    public void DecreaseHealth()
     {
         // 1 punkt gesundheit abziehen
         currentHealth = currentHealth - 1;
 
         // healthbar auf aktuellen wert setzen (slider anpassen)
         healthBar.SetHealth(currentHealth);
+
+        print("Decreasing Health...");
     }
 }
