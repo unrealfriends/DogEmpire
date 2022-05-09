@@ -10,6 +10,8 @@ public class FoodAI : MonoBehaviour
 
     //losinghealth auf false, sonst verliert von anfang an gesundheit
     public bool losingFood;
+    // startcoroutine auf false, sonst starten couroutines mit jedem frame
+    public bool coroutineStart = false;
 
     // foodbar aufrufen
     // da gesundheit direkt mit foodbar interagiert
@@ -17,7 +19,6 @@ public class FoodAI : MonoBehaviour
     public HealthBar healthBar;
 
     public Health health;
-
 
     // Start is called before the first frame update
     void Start()
@@ -36,18 +37,18 @@ public class FoodAI : MonoBehaviour
             StartCoroutine(UpdateFood());
 
         }
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (currentFood <= 99)
+        if (currentFood <= 90 && coroutineStart == false)
         {
             print("Nahrung ist knapp! Bitte Essen!");
 
-            health.UpdateHealth();
+            health.losingHealth = true;
+            StartCoroutine(health.UpdateHealth());
+            coroutineStart = true;
         }
 
     }

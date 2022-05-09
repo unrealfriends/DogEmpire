@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
 
 
     //losinghealth auf false, sonst verliert von anfang an gesundheit
-    public bool losingHealth = false;
+    public bool losingHealth;
 
     // healthbar aufrufen
     // da gesundheit direkt mit healthbar interagiert
@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
     void Start()
     {
 
-        losingHealth = true;
+        //losingHealth = true;
         // bei start: momentane gesundheit ist gleich maximale 
         currentHealth = maxHealth;
         // healthbar entsprechend anpassen
@@ -43,10 +43,13 @@ public class Health : MonoBehaviour
     {
         while (true)
         {
-            // 5 sekunden warten
-            yield return new WaitForSeconds(5f);
-            // gesundheit abziehen
-            DecreaseHealth();
+            if (losingHealth == true)
+            {
+                // 5 sekunden warten
+                yield return new WaitForSeconds(5f);
+                // gesundheit abziehen
+                DecreaseHealth();
+            }
         }
     }
 
