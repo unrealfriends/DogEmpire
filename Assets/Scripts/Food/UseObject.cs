@@ -6,6 +6,8 @@ public class UseObject : MonoBehaviour
 {
     //public Health health;
     //increaseHealth = new IncreaseHealth();
+    int foodGain = 5;
+    public FoodAI foodAI;
 
     // Start is called before the first frame update
     void Start()
@@ -23,19 +25,19 @@ public class UseObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Pickup();
+            Pickup(foodGain);
             //AddToHealth();
         }
     }
 
-    void Pickup()
+    void Pickup(int foodGain)
     {
-        Debug.Log("Power up picked up!");
-
+        foodGain = this.foodGain;
         // effekt auf player anwenden
 
         // objekt entfernen
         Destroy(gameObject);
-        print("Objekt wurde berührt");
+        Debug.Log("Objekt wurde berührt");
+        foodAI.FoodPickedUp(foodGain);
     }
 }

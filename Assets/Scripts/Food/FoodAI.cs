@@ -10,6 +10,7 @@ public class FoodAI : MonoBehaviour
 
     //losinghealth auf false, sonst verliert von anfang an gesundheit
     public bool losingFood;
+    public bool gainingFood;
     // startcoroutine auf false, sonst starten couroutines mit jedem frame
     public bool coroutineStart = false;
 
@@ -27,6 +28,7 @@ public class FoodAI : MonoBehaviour
         //health = gameObject.AddComponent<Health>();
 
         losingFood = true;
+        gainingFood = false;
         // bei start: momentane gesundheit ist gleich maximale 
         currentFood = maxFood;
         // healthbar entsprechend anpassen
@@ -53,23 +55,43 @@ public class FoodAI : MonoBehaviour
 
     }
 
-    IEnumerator UpdateFood()
+    public IEnumerator UpdateFood()
     {
         while (true)
         {
             // 5 sekunden warten
             yield return new WaitForSeconds(5f);
-            // gesundheit abziehen
-            DecreaseFood();
+            if (losingFood == true)
+            {
+                // gesundheit abziehen
+                DecreaseFood();
+            }
+            if (gainingFood == true)
+            {
+                IncreaseFood();
+            }
         }
     }
 
+    // diese methode wird verwendet, wenn nahrung berührt wird
+    public void FoodPickedUp(int foodGain)
+    {
+        gainingFood = true;
+        print("Nahrung aufgehoben!");
+    }
     void DecreaseFood()
     {
         // 1 punkt gesundheit abziehen
         currentFood = currentFood - 2;
 
         // foodbar auf aktuellen wert setzen (slider anpassen)
+        foodBar.SetFood(currentFood);
+    }
+
+    void IncreaseFood()
+    {
+        currentFood = currentFood + 5;
+        print("Nahrung wurde um 5 aufgefüllt");
         foodBar.SetFood(currentFood);
     }
 }
