@@ -30,18 +30,6 @@ public class PlayerScript : MonoBehaviour
         {
             MoveToMousePosition();
         }
-    }
-
-    // zu linken mausklick gehen
-    void MoveToMousePosition()
-    {
-        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100))
-        {
-            mNavMeshAgent.destination = hit.point;
-        }
-        // wenn ziel erreicht ist
         if (mNavMeshAgent.remainingDistance <= mNavMeshAgent.stoppingDistance)
         {
             // stoppen
@@ -55,5 +43,17 @@ public class PlayerScript : MonoBehaviour
         // bool im animator entsprechend setzen
         playerAnimator.SetBool("isWalking", isWalking);
 
+    }
+
+    // zu linken mausklick gehen
+    void MoveToMousePosition()
+    {
+        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100))
+        {
+            mNavMeshAgent.destination = hit.point;
+        }
+        // wenn ziel erreicht ist
     }
 }
