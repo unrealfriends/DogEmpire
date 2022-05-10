@@ -9,6 +9,11 @@ public class UseObject : MonoBehaviour
     int foodGain = 5;
     public FoodAI foodAI;
 
+    public Animator playerAnimator;
+    public bool isWalking;
+    public bool isEating;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +38,14 @@ public class UseObject : MonoBehaviour
     void Pickup(int foodGain)
     {
         foodGain = this.foodGain;
-        // effekt auf player anwenden
-
+        // iseating auf true für animator 
+        isEating = true;
+        // bool im animator setzen
+        playerAnimator.SetBool("isEating", isEating);
         // objekt entfernen
         Destroy(gameObject);
         Debug.Log("Objekt wurde berührt");
+        // methode foodpickedup aufrufen
         foodAI.FoodPickedUp(foodGain);
     }
 }

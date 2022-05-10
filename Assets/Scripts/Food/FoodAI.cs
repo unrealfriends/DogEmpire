@@ -21,6 +21,10 @@ public class FoodAI : MonoBehaviour
 
     public Health health;
 
+    public Animator playerAnimator;
+    public bool isWalking;
+    public bool isEating;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,10 +48,12 @@ public class FoodAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentFood <= 90 && coroutineStart == false)
+        if (coroutineStart == false)
         {
-            print("Nahrung ist knapp! Bitte Essen!");
-
+            if (currentFood <= 90)
+            {
+                print("Nahrung ist knapp! Bitte Essen!");
+            }
             health.losingHealth = true;
             StartCoroutine(health.UpdateHealth());
             coroutineStart = true;
@@ -78,6 +84,7 @@ public class FoodAI : MonoBehaviour
     {
         gainingFood = true;
         print("Nahrung aufgehoben!");
+
     }
     void DecreaseFood()
     {
@@ -86,12 +93,17 @@ public class FoodAI : MonoBehaviour
 
         // foodbar auf aktuellen wert setzen (slider anpassen)
         foodBar.SetFood(currentFood);
+
     }
 
     void IncreaseFood()
     {
         currentFood = currentFood + 5;
         print("Nahrung wurde um 5 aufgefüllt");
+        // foodbar anpassen
         foodBar.SetFood(currentFood);
+        // bool für animator setzen und zuweisen
+        isEating = false;
+        playerAnimator.SetBool("isEating", isEating);
     }
 }

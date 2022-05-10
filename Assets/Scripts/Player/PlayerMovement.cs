@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            // sonst weitegehen
+            // sonst weitergehen
             isWalking = true;
         }
         // bool im animator entsprechend setzen
