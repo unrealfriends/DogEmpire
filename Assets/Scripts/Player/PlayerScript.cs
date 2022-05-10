@@ -22,6 +22,10 @@ public class PlayerScript : MonoBehaviour
     {
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
+
+        //ItemWorld.SpawnItemWorld(new Vector3(20, 20), new Item { itemType = Item.ItemType.Wood, amount = 1 });
+        //ItemWorld.SpawnItemWorld(new Vector3(-20, -20), new Item { itemType = Item.ItemType.Wood, amount = 1 });
+        //ItemWorld.SpawnItemWorld(new Vector3(0, 20), new Item { itemType = Item.ItemType.WoodCrate, amount = 1 });
     }
 
 
