@@ -15,10 +15,13 @@ public class PlayerScript : MonoBehaviour
     // bools
     public bool isWalking;
 
+    [SerializeField] private UI_Inventory uiInventory;
+
     // Start is called before the first frame update
     void Start()
     {
         inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
     }
 
 
