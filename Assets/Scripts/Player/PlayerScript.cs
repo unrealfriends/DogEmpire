@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
 
     public NavMeshAgent mNavMeshAgent;
     public Camera playerCamera;
     public Animator playerAnimator;
+
+    private Inventory inventory;
 
     // bools
     public bool isWalking;
@@ -16,8 +18,9 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        inventory = new Inventory();
     }
+
 
     // Update is called once per frame
     private void Update()
